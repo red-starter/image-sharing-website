@@ -8,8 +8,13 @@
 </head>
 <body>
 <div class="container">
+<!-- = means oupt content to screen -->
+<%= render 'home/header'%> 
+<!-- for each flash message do something, output the message in a css div with class alert alert-info -->
+<% flash.each do |name,msg| %>
+	<%= content_tag(:div,msg,class:"alert alert-info") %>
+<% end %>
 <!-- renderd all the other templates here -->
-<%= render 'home/header'%>
 <%= yield %>
 </div>
 
