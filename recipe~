@@ -1,0 +1,67 @@
+BASIC
+- create new app by running- rails new *name_of_project*
+- fire up server using - rails server
+- add gems to Gemfile , then to install it run - bundle install
+
+GENERATING
+- to generate a controller: rails generate controller *controller_name* *action_name* *action_name2*.. 
+	-the controller comes with blank actions (methods) with the same name as a corresponding view
+	-creates the controller at app/controller/*name_of_controller*_controller
+	-creates routes: get *controller_name*/*action_name* , at config/routes
+	-creates views at app/view/*controller_name/*action_name*.html.erb
+	-creates a helper a app/helper/*controller_name*_helper.rb
+	-generates assets and tests
+- to generate a model, a migration, controllers and views, we run rails g scaffold *scaffold_name*s *column_name*:*data_type*
+-rails g scaffold creates a migrations, we need to rake db:migrate to push the migration to the databse, to push htese changes to heroku, we use rake db:migrate command
+-if you create a scaffold, a new style sheet gets created which can override our bootstrap stylesheet
+-scaffold enables CRUD (create,tead,update,destroy) for our scaffold, could be useful for posts,blogs etc., these are available as methods/actions of the controller nad for the views in the app/view/*scaffold_name*
+-rails g resource, unlike scaffold, does not create views, or  add any methods to the generated controller
+-to undo generate commands just use destroy, or d
+rails g scaffold Ooops!, rails d scaffold Ooops! , however if you have migrated the changes to the database (which will be reflected in the db/schema.rb a snapshot of how the database currently looks like) use rake db:rollback to go one step back
+- to generate a model run rails g model e.g. rails g post title:string body:text published:boolean Creates a Post model with a string title, text body and published flag
+- to add a column to a table: rails g migration add_name_to_users name:string , this adds a Name column to the Users table and (after running rake db:migrate) changes the schema to reflect the change in the database
+
+ROUTES
+
+- can see routes by using rake routes. The first column tells us which link_to tag we need (just slap a _path at the end of it), e.g. a hyperlink to root is <%= link_to 'Anchor text',root_path %>
+
+- html link looks like <a href="view.html">Anchor text</a>, but erb link like:
+<%= link_to 'Anchor text',*controller*_*action*_path %> , link_to denotes that we are making a hyperlink, *controller*_*action*_path tells the app which route to follow, it comes from config/routes.rb : get 'controller/action' the _path part is convention
+- make home page by writing: root 'controller#action' , in config/routes
+
+GEMS
+- group gem in gemfile according to production ,development etc, then you can install --without production in development
+-to create partials name the file with underscore in front, e.g. _header.html.erb and save it in app/view/*controller_name*/ , to call the partial in another file use: <% render *controller_name*/*partial_name* %>
+-the layouts/application.html.erb holds th skeleton frameworks for every web page in the app, the special tag is <%= yield %> , which outputs all the stuff from our views and displays them. If you want the partial on every website just render ot above the yield tag: <%= render '*controller_name*/*partial_name*' %> 
+
+INSTALLING BOOTSTRAP
+- go to rubygems.org, get name 'bootstrap-sass', at to Gemfile, run bundle install, then add a CSS file at app/assets/stylesheets called bootstraply.css.scss , add these two lines of code: @import "bootstrap=sprockets" , @import "bootstrap , then go to app/assets/javascript and add //= require bootstrap-sprockets, //=require bootstrap
+
+-of we want to customize bootstrap, go to app/assets/stylesheets/bootstraply.css.scss and add some SASS, e.g. $jumbotron-bg: blue; changes all jumbotrons in document to blue (needs to be above @import code), follow the format $variable:output;
+
+
+-pushing migrations to POSTGRES at heroku (heroku does not like sqlite) - heroku run rake db:migrate
+
+-rails console --sandbox allow us to experiment with the app, all changes will be rolled back
+
+Rails has associations available for models
+- belongs_to 
+- has_one
+- has_many
+if you have a reference through an intermediary, eg. a model subscriptions, a user has_many leaders through subscriptions, and has_many followers through rever_subscriptions 
+
+ACCESSING CLIENT DATA
+-params makes post and get data available from the client, e.g. for a specific post, the user hits the /posts/1 link, in the rails server terminal we can see: Started GET "/posts/1" for 127.0.0.1 at 2015-03-08 18:47:15 +0000 Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}, so we can see that "1" gets passed as a key:value pair in a the hash table "param". The key "id" acceses post number e.g. @post = Post.find(params[:id]) , queries database
+-for more security can use params.require and params.permit returns a copy of the parameters object only permitted value are passed into the model 
+the require method ensures that a specific parameter is present, otherwise it throws an error.
+e.g. for creating new user 
+def user_params
+                params.require(:user).permit(:name, :email, :password, :password_confirmation)
+        end
+
+
+if we want to access Amazon S3 need to store access keys as environmtal variables directly in heroku, $heroku config:set S3_BUCKET_NAME=your_bucket_name etc.
+
+-use @ to refer to instance variable
+
