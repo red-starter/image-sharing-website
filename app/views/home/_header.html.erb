@@ -5,11 +5,11 @@
     </div>
 
 	  <ul class="nav navbar-nav navbar-right">
-	    <li><%=link_to 'About us',home_about_path%></li>
-	    <li><%=link_to 'FAQ us',home_faq_path%></li>
+	    <li><%=link_to 'About',home_about_path%></li>
+	    <li><%=link_to 'FAQ',home_faq_path%></li>
 	    <li><%=link_to 'Show Pins',pins_path%></li>
-	    <li><%=link_to 'Log out',destroy_user_session_path,method: 'delete'%></li>
 	    <% if user_signed_in? %>
+	    <li><%=link_to 'Log out',destroy_user_session_path,method: 'delete'%></li>
 	    <li><%=link_to 'Edit user',edit_user_registration_path%></li>
 	    <li><%=link_to 'New Pin',new_pin_path%></li>
 	    <p class="navbar-text">Signed in as <%= current_user.email %></p>

@@ -1,2 +1,51 @@
-<h1>Home#faq</h1>
-<p>Find me in app/views/home/faq.html.erb</p>
+<h1>FAQ</h1>
+<div class="alert alert-info alert-dismissible text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        There is a lot of information on this page. Please peruse at your leisure. 
+</div>	
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Contact me
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        my email is: ms10212@ic.ac.uk
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          More Information
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        my name is Mike, I like Physics
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Je parle francais
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Vraiment
+      </div>
+    </div>
+  </div>
+</div>
+

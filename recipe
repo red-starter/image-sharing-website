@@ -44,6 +44,8 @@ INSTALLING BOOTSTRAP
 
 -rails console --sandbox allow us to experiment with the app, all changes will be rolled back
 
+-rake db:reset which drops and then recreates the database 
+
 Rails has associations available for models
 - belongs_to 
 - has_one

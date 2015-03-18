@@ -8,6 +8,10 @@
   <strong>Body:</strong>
   <%= @pin.body %>
 </p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @pin.image.url(:thumb) %>
+</p>
 
 <%= link_to 'Edit', edit_pin_path(@pin) %> |
 <%= link_to 'Back', pins_path %>
