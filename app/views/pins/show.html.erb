@@ -1,16 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @pin.title %>
-</p>
-<p>
-  <strong>Body:</strong>
+ 
+ <strong>Body:</strong>
   <%= @pin.body %>
 </p>
 <p>
-  <strong>Image:</strong>
-  <%= image_tag @pin.image.url(:thumb) %>
+  <%= image_tag @pin.image.url(:medium) %>
 </p>
 
 <%= link_to 'Edit', edit_pin_path(@pin) %> |

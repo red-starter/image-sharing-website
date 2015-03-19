@@ -6,8 +6,8 @@ class Pin < ActiveRecord::Base
 	# allows all image types to be uploaded
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-	attr_accessor :image_file_name
-	attr_accessor :image_content_type
-	attr_accessor :image_file_size
-	attr_accessor :image_updated_at
+	# attr_accessor :image_file_name
+	# attr_accessor :image_content_type
+	# attr_accessor :image_file_size
+	# attr_accessor :image_updated_at
 end
