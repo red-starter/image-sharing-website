@@ -60,3 +60,5 @@ group :production do
 end
 
 
+gem "masonry-rails"
+gem "jquery-turbolinks"
