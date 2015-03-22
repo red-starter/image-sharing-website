@@ -1,0 +1,1 @@
+A social website written with ruby on rails. Images are stores using amazon web services. Users can publish images with a short description.
